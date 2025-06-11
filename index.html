@@ -3,63 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mikkie Pieter du Toit</title>
+  <title>Mikkie Pieter du Toit - Portfolio</title>
+  <meta name="description" content="Portfolio and personal website of Mikkie Pieter du Toit: creative technologist, designer, and innovator.">
+  <meta property="og:title" content="Mikkie Pieter du Toit - Portfolio">
+  <meta property="og:description" content="Showcasing technology, design, and creativity. Let's connect!">
+  <meta property="og:image" content="https://media.licdn.com/dms/image/C4E03AQH0n8zR1Uyg7g/profile-displayphoto-shrink_200_200/0/1516893840284?e=2147483647&v=beta&t=ZCg0svW1U50upwSwVZ6Gv3yA9q3m8vJQkLz6v1uYwRA">
+  <meta property="og:type" content="website">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Mikkie Pieter du Toit</h1>
-      <p class="subtitle">Personal Showcase</p>
-    </header>
+  <nav class="navbar">
+    <div class="nav-container">
+      <span class="nav-logo">Mikkie Pieter du Toit</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <main>
-      <!-- Images Section -->
-      <section class="section">
-        <h2><span class="icon">📸</span> Social Images</h2>
-        <div class="image-grid">
-          <!-- Instagram Post Embed Example -->
-          <div class="image-card instagram">
-            <!-- Replace with your own Instagram embed code -->
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cw9vX3dM5pN/" data-instgrm-version="14" style="background:#181824; border:none; max-width:320px; min-width:220px;">
-              <a href="https://www.instagram.com/p/Cw9vX3dM5pN/" target="_blank" style="color:#00e6ff;">View on Instagram</a>
-            </blockquote>
-          </div>
-          <!-- Static Image Example (replace src with your image url) -->
-          <div class="image-card">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Sample Instagram" />
-          </div>
-          <!-- Add more images as needed -->
-        </div>
-        <div class="social-link-row">
-          <a href="https://instagram.com/xraycay07" target="_blank" class="social-link instagram">
+  <div class="main-wrapper">
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <div class="profile-image-wrapper">
+        <img class="profile-image" src="https://media.licdn.com/dms/image/C4E03AQH0n8zR1Uyg7g/profile-displayphoto-shrink_200_200/0/1516893840284?e=2147483647&v=beta&t=ZCg0svW1U50upwSwVZ6Gv3yA9q3m8vJQkLz6v1uYwRA" alt="Mikkie Pieter du Toit" />
+      </div>
+      <div class="hero-content">
+        <h1>Mikkie Pieter du Toit</h1>
+        <h2 class="hero-title">Creative Technologist</h2>
+        <p class="hero-bio">Passionate about technology, creativity, and making a difference. Welcome to my professional showcase.</p>
+        <div class="hero-socials">
+          <a href="https://instagram.com/xraycay07" target="_blank" title="Instagram">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
-            @xraycay07
+          </a>
+          <a href="https://www.linkedin.com/in/your-linkedin-url" target="_blank" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" />
           </a>
         </div>
-      </section>
-
-      <!-- Professional Section -->
-      <section class="section">
-        <h2><span class="icon">💼</span> Professional</h2>
-        <div class="profile-card">
-          <img class="profile-img" src="https://media.licdn.com/dms/image/C4E03AQH0n8zR1Uyg7g/profile-displayphoto-shrink_200_200/0/1516893840284?e=2147483647&v=beta&t=ZCg0svW1U50upwSwVZ6Gv3yA9q3m8vJQkLz6v1uYwRA" alt="LinkedIn Profile Photo" />
-          <div class="profile-details">
-            <h3>Mikkie Pieter du Toit</h3>
-            <p>Passionate about technology, creativity, and connecting with people!</p>
-            <a href="https://www.linkedin.com/in/your-linkedin-url" target="_blank" class="social-link linkedin">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" />
-              LinkedIn Profile
-            </a>
-          </div>
+        <div class="hero-buttons">
+          <a href="#connect" class="btn btn-accent">Contact Me</a>
+          <a href="resume.pdf" class="btn" download>Download Resume</a>
         </div>
-      </section>
-    </main>
+      </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi! I’m Mikkie Pieter du Toit. With a background in technology and a flair for creative problem-solving, I thrive at the intersection of innovation and design.<br>
+        <span class="about-highlight">Let’s connect and create something impactful!</span>
+      </p>
+      <ul class="skills-list">
+        <li>Web Development</li>
+        <li>Creative Design</li>
+        <li>Social Media Strategy</li>
+        <li>Project Management</li>
+      </ul>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Personal Portfolio Website</h3>
+          <p>Designed and developed a responsive, modern personal portfolio featuring social integration and dynamic content.</p>
+          <a href="#" class="project-link">View Live</a>
+        </div>
+        <div class="project-card">
+          <h3>Instagram Gallery Integration</h3>
+          <p>Implemented Instagram embed and gallery features for real-time social media content on personal and client sites.</p>
+          <a href="https://instagram.com/xraycay07" target="_blank" class="project-link">See Gallery</a>
+        </div>
+        <div class="project-card">
+          <h3>Brand Design Campaign</h3>
+          <p>Lead creative design for a multi-platform branding project, helping the client boost their digital presence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+      <h2>Instagram Gallery</h2>
+      <div class="gallery-grid">
+        <!-- Instagram Embed Example -->
+        <div class="gallery-item">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cw9vX3dM5pN/" data-instgrm-version="14"></blockquote>
+        </div>
+        <div class="gallery-item">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cb0vX4tN1pK/" data-instgrm-version="14"></blockquote>
+        </div>
+        <div class="gallery-item">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Ca1kY5hQ2mL/" data-instgrm-version="14"></blockquote>
+        </div>
+      </div>
+      <div class="gallery-footer">
+        <a href="https://instagram.com/xraycay07" target="_blank" class="gallery-cta">View more on Instagram &rarr;</a>
+      </div>
+    </section>
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+      <h2>Testimonials</h2>
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <p>"Mikkie brings creativity and professionalism to every project. Highly recommended!"</p>
+          <span>- Alex J., Designer</span>
+        </div>
+        <div class="testimonial-card">
+          <p>"A true innovator—delivered more than expected and was a joy to work with."</p>
+          <span>- Sam P., Project Lead</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECT SECTION -->
+    <section class="connect" id="connect">
+      <h2>Connect</h2>
+      <div class="connect-cards">
+        <div class="connect-card">
+          <a href="https://www.linkedin.com/in/your-linkedin-url" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" />
+            <span>LinkedIn</span>
+          </a>
+        </div>
+        <div class="connect-card">
+          <a href="mailto:your.email@example.com">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email" />
+            <span>Email Me</span>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <h3>Contact Form</h3>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-accent">Send</button>
+      </form>
+    </section>
 
     <footer>
-      <p>&copy; 2025 Mikkie Pieter du Toit</p>
+      <p>&copy; 2025 Mikkie Pieter du Toit. All rights reserved.</p>
     </footer>
   </div>
-  <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
