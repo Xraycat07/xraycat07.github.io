@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #181824;
+  color: #f8f8ff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+  max-width: 650px;
+  margin: 30px auto;
+  background: #232336;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px #000a;
+  padding: 2rem 1.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  color: #00e6ff;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: #ff59c7;
+  font-size: 1.2rem;
+  margin-top: .5rem;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  color: #e8ff00;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.icon {
+  font-size: 1.4em;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.image-card {
+  background: #29294d;
+  border-radius: 14px;
+  box-shadow: 0 2px 18px #0005;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 210px;
+}
+
+.image-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-card.instagram {
+  min-height: 210px;
+  padding: 10px 0;
+  background: #181824;
+}
+
+.social-link-row {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #f8f8ff;
+  background: #29294d;
+  transition: background 0.2s, transform 0.2s;
+  font-size: 1.1rem;
+  gap: 0.7rem;
+  font-weight: 500;
+}
+
+.social-link img {
+  width: 26px;
+  height: 26px;
+  filter: brightness(1.2);
+}
+
+.social-link.instagram:hover {
+  background: linear-gradient(90deg, #fd5, #ff543e 60%, #833ab4 100%);
+  color: #181824;
+  transform: scale(1.04);
+}
+
+.social-link.linkedin:hover {
+  background: #00aaff;
+  color: #181824;
+  transform: scale(1.04);
+}
+
+/* Professional Section */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  background: #29294d;
+  border-radius: 14px;
+  padding: 1.2em;
+  box-shadow: 0 2px 18px #0005;
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00e6ff;
+}
+
+.profile-details h3 {
+  margin: 0 0 0.2em 0;
+  font-size: 1.2em;
+  color: #ff59c7;
+}
+.profile-details p {
+  margin: 0 0 0.8em 0;
+  color: #e8ff00;
+  font-size: 1em;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: .9rem;
+  color: #6668a3;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem .3rem;
+  }
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+}
