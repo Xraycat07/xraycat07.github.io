@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mikkie Du Toit - Backend Developer Analyst</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      position: relative;
+    }
+    /* Background particles */
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      width: 100%;
+      max-width: 960px;
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: fadeSlideDown 1s ease forwards;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 0.2rem;
+      color: #8ef0ff;
+      text-shadow: 0 0 20px #00e5ff;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: #a3dffb;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #00bcd4;
+    }
+
+    main {
+      background: #111c29cc;
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      margin: 2rem 1rem 4rem;
+      max-width: 960px;
+      width: 100%;
+      box-shadow: 0 0 50px #00bcd4aa;
+      position: relative;
+      z-index: 10;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-weight: 700;
+      font-size: 2.25rem;
+      border-bottom: 3px solid #00e5ff;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      color: #00e5ff;
+      letter-spacing: 1px;
+    }
+
+    .about p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #c0dfff;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .education {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #6cd1f1;
+      text-align: center;
+    }
+
+    .experience-list {
+      list-style: none;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 0;
+    }
+    .experience-list li {
+      background: #0a1b2b;
+      margin-bottom: 1.2rem;
+      padding: 1.2rem 1.8rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bcd4;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .experience-list li:hover {
+      transform: translateX(15px) scale(1.03);
+      box-shadow: 0 0 30px #00e5ff;
+      z-index: 5;
+    }
+    .exp-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #7afcff;
+      letter-spacing: 0.5px;
+    }
+    .exp-company {
+      font-weight: 300;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: #59c5e9;
+    }
+    .exp-duration {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #38b6ff;
+      margin-bottom: 0.8rem;
+    }
+    .exp-desc {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #a0d8f7;
+    }
+
+    .skills {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+    }
+    .skill {
+      background: #004a6f;
+      padding: 0.8rem 1.3rem;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #00e5ff;
+      box-shadow: 0 0 20px #00bcd4;
+      cursor: default;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .skill:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 35px #0ff;
+    }
+
+    .instagram-gallery {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+      gap: 14px;
+    }
+    .instagram-gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bcd4;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .instagram-gallery img:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 30px #0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 3rem;
+      color: #777;
+      font-size: 0.95rem;
+      width: 100%;
+      background: transparent;
+      position: relative;
+      z-index: 10;
+    }
+    a.social-link {
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 0.7rem;
+      transition: color 0.4s ease;
+    }
+    a.social-link:hover {
+      color: #88ffff;
+    }
+
+    /* Web3 section */
+    .web3-section {
+      background: #0a192f;
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      box-shadow: 0 0 50px #00e5ffaa;
+      max-width: 960px;
+      margin: 0 auto 3rem;
+      color: #00e5ff;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      position: relative;
+    }
+    .web3-section h2 {
+      color: #00fff7;
+      margin-bottom: 1.3rem;
+      font-size: 2.3rem;
+      text-shadow: 0 0 12px #00fff7;
+    }
+    .web3-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .web3-icon {
+      color: #00bcd4;
+      filter: drop-shadow(0 0 5px #00fff7);
+      cursor: default;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .web3-icon:hover {
+      color: #00fff7;
+      transform: scale(1.3) rotate(10deg);
+    }
+    .web3-desc {
+      font-weight: 400;
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 0 auto;
+      color: #a0e9ff;
+      line-height: 1.5;
+    }
+
+    /* Animations */
+    @keyframes fadeSlideDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      main, .web3-section {
+        padding: 1.5rem 1.5rem;
+      }
+      .web3-icons {
+        font-size: 2.2rem;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle background -->
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h1>Mikkie Du Toit</h1>
+    <p>Backend Developer Analyst | Software Developer</p>
+  </header>
+
+  <main>
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <p>
+        Experienced Backend Developer Analyst currently working at Fourier IT Innovation and Nedbank. Skilled in C#, MS SQL, Node.js, Kafka, SOAP UI, and Power Platform tools. Passionate about delivering robust software solutions and streamlining workflows with automation.
+      </p>
+      <p class="education">BSc Information Technology — North-West University</p>
+    </section>
+
+    <section class="experience" id="experience">
+      <h2>Experience</h2>
+      <ul class="experience-list">
+        <li>
+          <div class="exp-title">Backend Developer Analyst</div>
+          <div class="exp-company">Fourier IT Innovation</div>
+          <div class="exp-duration">Aug 2022 – Present</div>
+          <div class="exp-desc">
+            Developed and maintained backend services using C# and MS SQL. Implemented integrations via SOAP UI and Kafka. Enhanced system performance by 30%.
+          </div>
+        </li>
+        <li>
+          <div class="exp-title">Software Developer</div>
+          <div class="exp-company">Nedbank</div>
+          <div class="exp-duration">Jun 2020 – Jul 2022</div>
+          <div class="exp-desc">
+            Collaborated on banking platform enhancements, developed automation scripts with Power Platform, and ensured smooth deployment pipelines.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="skills" id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill">C#</div>
+        <div class="skill">MS SQL</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">Kafka</div>
+        <div class="skill">SOAP UI</div>
+        <div class="skill">Power Platform</div>
+        <div class="skill">Git</div>
+        <div class="skill">REST APIs</div>
+        <div class="skill">Azure</div>
+      </div>
+    </section>
+
+    <section class="instagram" id="instagram">
+      <h2>Instagram Gallery</h2>
+      <div class="instagram-gallery">
+        <img src="https://instagram.fjnb1-1.fna.fbcdn.net/v/t51.2885-15/297538940_460560123982743_7189146258908902732_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=KSvCJe2rWbIAX9hHj8K&_nc_ht=instagram.fjnb1-1.fna.fbcdn.net&edm=ANo9K5cEAAAA&oh=00_AfDWOu8PLVGQ7lGQMaOg8yQXxwhmhCqJYz-YkTHb5WT2pg&oe=64F406E4" alt="Instagram 1" />
+        <img src="https://instagram.fjnb1-1.fna.fbcdn.net/v/t51.2885-15/297798507_1648698322870706_3081120357485366881_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=gjRbfQ_C45cAX_fh2e8&_nc_ht=instagram.fjnb1-1.fna.fbcdn.net&edm=ANo9K5cEAAAA&oh=00_AfA3XdLwrRo_BpL6P5j3lmMt3kvM-RP5IHeCTmjggO8S8w&oe=64F3E6D2" alt="Instagram 2" />
+        <img src="https://instagram.fjnb1-1.fna.fbcdn.net/v/t51.2885-15/294565736_426990657030072_8004046411853256913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=KkyDltvH0voAX_vMnmz&_nc_ht=instagram.fjnb1-1.fna.fbcdn.net&edm=ANo9K5cEAAAA&oh=00_AfBUCwhI-1GFl2g25dw-MqK8Ez3H_hBqQe7sdujD7U_gSw&oe=64F418A3" alt="Instagram 3" />
+      </div>
+    </section>
+
+  </main>
+
+  <section class="web3-section" id="web3">
+    <h2>Web3 & Blockchain</h2>
+    <div class="web3-icons" aria-label="Web3 technology icons" role="img">
+      <!-- Simple SVG or emoji icons -->
+      <div class="web3-icon" title="Blockchain">⛓️</div>
+      <div class="web3-icon" title="Smart Contracts">📜</div>
+      <div class="web3-icon" title="Decentralized Apps">🕸️</div>
+      <div class="web3-icon" title="Cryptocurrency">💰</div>
+    </div>
+    <p class="web3-desc">
+      Exploring the future of decentralized applications, smart contracts, and blockchain technology to build secure and transparent systems. Passionate about integrating Web3 innovations to revolutionize backend development.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Mikkie Du Toit &nbsp;|&nbsp; 
+    <a href="https://linkedin.com/in/mikkiedutoit" target="_blank" class="social-link" rel="noopener noreferrer">LinkedIn</a> 
+    <a href="https://github.com/mikkiedutoit" target="_blank" class="social-link" rel="noopener noreferrer">GitHub</a>
+  </footer>
+
+  <script>
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('main section, .web3-section');
+    function checkSections() {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkSections);
+    window.addEventListener('load', checkSections);
+
+    // Particle background effect (simple)
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+    const maxParticles = 80;
+
+    function Particle(x, y, size, speedX, speedY) {
+      this.x = x;
+      this.y = y;
+      this.size = size;
+      this.speedX = speedX;
+      this.speedY = speedY;
+      this.opacity = Math.random() * 0.7 + 0.3;
+    }
+    Particle.prototype.update = function() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+      if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    };
+    Particle.prototype.draw = function() {
+      ctx.fillStyle = `rgba(0, 255, 255, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < maxParticles; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() - 0.5) * 0.3;
+        let speedY = (Math.random() - 0.5) * 0.3;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animateParticles();
+  </script>
+</body>
+</html>
+
