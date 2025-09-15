@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Midstream Ascend — Apartment Listing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #0a84ff; /* soft blue */
+      --accent-2: #0fbf9a; /* soft green */
+      --bg: #f7f9fb;
+      --muted: #6b7280;
+      --card: #ffffff;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing: border-box}
+    body{background:var(--bg); color:#0b1220; margin:0; -webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    /* Header */
+    .site-header{position:fixed; top:0; left:0; right:0; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 28px; background:rgba(255,255,255,0.7); backdrop-filter: blur(6px); border-bottom:1px solid rgba(13,18,25,0.04); z-index:60}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{height:44px; width:44px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700}
+    .nav{display:flex; gap:18px; align-items:center}
+    .nav a{font-weight:600; color:var(--muted); text-decoration:none}
+
+    /* Hero */
+    .hero{margin-top:72px; display:grid; grid-template-columns:1fr 420px; gap:28px; padding:48px; align-items:center}
+    .hero-left{background:linear-gradient(180deg, rgba(10,132,255,0.05), rgba(15,191,154,0.02)); padding:28px; border-radius:14px}
+    .hero-title{font-size:32px; font-weight:800; margin-bottom:10px}
+    .hero-sub{color:var(--muted); margin-bottom:18px}
+    .badge{display:inline-block; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; padding:8px 12px; border-radius:999px; font-weight:700; margin-bottom:12px}
+
+    .slideshow{position:relative; height:420px; border-radius:12px; overflow:hidden}
+    .slide{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity .8s ease}
+    .slide.active{opacity:1}
+    .slide::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));}
+    .cta-row{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:12px 16px; border-radius:10px; font-weight:700; cursor:pointer; border:0}
+    .btn-primary{background:var(--accent); color:white}
+    .btn-outline{background:transparent; border:1px solid rgba(11,18,32,0.06)}
+
+    /* Right card */
+    .listing-card{background:var(--card); border-radius:12px; padding:20px; box-shadow:0 6px 20px rgba(11,18,32,0.06)}
+    .price{font-size:22px; font-weight:800}
+    .meta{color:var(--muted); margin-top:8px}
+    .contact{display:flex; gap:12px; margin-top:16px}
+    .contact a{display:inline-flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--muted); border:1px solid rgba(11,18,32,0.04)}
+
+    /* Section styles */
+    section{padding:48px;}
+    .container{max-width:1100px; margin:0 auto}
+    h2{font-size:20px; margin-bottom:12px}
+    p.lead{color:var(--muted); margin-bottom:18px}
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card); border-radius:10px; padding:18px; box-shadow:0 6px 20px rgba(11,18,32,0.04)}
+    .small{font-size:14px; color:var(--muted)}
+
+    /* Gallery */
+    .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .gallery-grid img{width:100%; height:220px; object-fit:cover; border-radius:8px}
+
+    /* Footer */
+    footer{padding:28px; background:transparent; color:var(--muted); text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:24px}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+      .slideshow{height:320px}
+    }
+    @media (max-width:560px){
+      .site-header{padding:0 14px}
+      .nav{display:none}
+      .gallery-grid{grid-template-columns:1fr}
+      .hero-left{padding:18px}
+      .slideshow{height:240px}
+    }
+
+    /* Entrance animations */
+    .reveal{opacity:0; transform:translateY(12px); transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+
+    /* subtle float */
+    .float{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">MA</div>
+      <div>
+        <div style="font-weight:800">Midstream Ascend</div>
+        <div style="font-size:12px;color:var(--muted)">Luxury apartment listing</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#nearby">Nearby</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-left reveal">
+        <div class="badge">Midstream Ascend</div>
+        <div class="hero-title">Modern 2‑bed apartment in Midstream</div>
+        <div class="hero-sub">Quiet position close to amenities: parks, golf, restaurants and Mediclinic Midstream.</div>
+
+        <div class="slideshow" id="slideshow">
+          <!-- Replace background-image URLs in the slides array in the script with direct image links from your Dropbox folder -->
+          <div class="slide active" style="background-image:url('https://via.placeholder.com/1600x1000?text=Apartment+1')"></div>
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x1000?text=Apartment+2')"></div>
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x1000?text=Apartment+3')"></div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Agent</button>
+          <button class="btn btn-outline" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">View Gallery</button>
+        </div>
+
+        <div style="margin-top:18px; display:flex; gap:14px; align-items:center">
+          <div class="card small" style="display:inline-block">2 Beds · 2 Baths · 96 m²</div>
+          <div class="card small">Secure parking · Balcony · Modern kitchen</div>
+        </div>
+      </div>
+
+      <aside class="listing-card reveal float">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <div class="price">R 2,350,000</div>
+            <div class="meta">Midstream, Centurion — Available now</div>
+          </div>
+          <div style="text-align:right; font-size:12px; color:var(--muted)">Ref: MA‑AI82</div>
+        </div>
+
+        <div class="contact">
+          <a href="tel:+27824604915">📞 082 460 4915</a>
+          <a href="mailto:Soria@shabanclark.co.za">✉️ Soria@shabanclark.co.za</a>
+        </div>
+
+        <hr style="margin:14px 0; border:none; height:1px; background:linear-gradient(90deg, transparent, rgba(11,18,32,0.04), transparent)"/>
+
+        <div style="display:flex; gap:12px; flex-direction:column">
+          <div class="small">Viewings: by appointment</div>
+          <div class="small">Furnishing: Unfurnished</div>
+          <div class="small">Rates & taxes: Estimated R1,200 pm</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="reveal">
+      <div class="container">
+        <h2>About this apartment</h2>
+        <p class="lead">A stylish, modern apartment in the sought-after Midstream Ascend complex. Open-plan living with high-quality finishes, a light-filled balcony and secure building access. Ideal for professionals or small families who want to be close to amenities and green spaces.</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <strong>Features</strong>
+            <ul class="small">
+              <li>Open-plan living & dining</li>
+              <li>High-spec kitchen with quartz counters</li>
+              <li>Two built-in bedrooms</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Security</strong>
+            <div class="small">24/7 security, controlled access, secure parking.</div>
+          </div>
+          <div class="card">
+            <strong>Transport</strong>
+            <div class="small">Easy access to main routes and train station nearby; secure bicycle storage available.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby -->
+    <section id="nearby">
+      <div class="container">
+        <h2>Attractions & nearby amenities</h2>
+        <p class="lead">Everything you need is within a short drive or walk.</p>
+
+        <div class="grid cols-3">
+          <div class="card">
+            <strong>Attractions & Activities</strong>
+            <ul class="small">
+              <li>Midstream Golf Course</li>
+              <li>Train Station Gym</li>
+              <li>Midstream Cycles</li>
+              <li>Midstream Sports Park</li>
+              <li>The R@M Bowls Club</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <strong>Medical</strong>
+            <div class="small">Mediclinic Midstream</div>
+          </div>
+
+          <div class="card">
+            <strong>Shops & Restaurants</strong>
+            <ul class="small">
+              <li>SUPERSPAR Midstream</li>
+              <li>Cozinha Restaurant</li>
+              <li>Mugg & Bean</li>
+              <li>Salsa Mexican Grill</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:18px" class="grid cols-3">
+          <div class="card">
+            <strong>Education</strong>
+            <div class="small">Midstream College<br/>Midstream Ridge Primary School</div>
+          </div>
+
+          <div class="card">
+            <strong>Walking & Parks</strong>
+            <div class="small">Close to green spaces and walking routes — great for morning runs.</div>
+          </div>
+
+          <div class="card">
+            <strong>Need more suggestions?</strong>
+            <div class="small">If you have other nearby places you want highlighted, tell us and we’ll add them.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="reveal">
+      <div class="container">
+        <h2>Gallery</h2>
+        <p class="lead">Photos of the apartment — you can replace the placeholder images with direct links to your Dropbox images.</p>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Images will be injected by script. Replace with your image URLs. -->
+          <img src="https://via.placeholder.com/800x600?text=Image+1" alt="Apartment image 1">
+          <img src="https://via.placeholder.com/800x600?text=Image+2" alt="Apartment image 2">
+          <img src="https://via.placeholder.com/800x600?text=Image+3" alt="Apartment image 3">
+          <img src="https://via.placeholder.com/800x600?text=Image+4" alt="Apartment image 4">
+          <img src="https://via.placeholder.com/800x600?text=Image+5" alt="Apartment image 5">
+          <img src="https://via.placeholder.com/800x600?text=Image+6" alt="Apartment image 6">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <h2>Contact the agent</h2>
+        <p class="lead">Get in touch to book a viewing or ask questions.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:start">
+          <div class="card">
+            <form onsubmit="event.preventDefault(); sendEnquiry();">
+              <label class="small">Your name</label>
+              <input id="name" type="text" placeholder="Full name" style="width:100%; padding:10px; margin:8px 0 12px; border-radius:8px; border:1px solid rgba(11,18,32,0.06)">
+
+              <label class="small">Your email</label>
+              <input id="email" type="email" placeholder="you@example.com" style="width:100%; padding:10px; margin:8px 0 12px; border-radius:8px; border:1px solid rgba(11,18,32,0.06)">
+
+              <label class="small">Message</label>
+              <textarea id="message" rows="5" placeholder="I would like to view the apartment..." style="width:100%; padding:10px; margin:8px 0 12px; border-radius:8px; border:1px solid rgba(11,18,32,0.06)"></textarea>
+
+              <button class="btn btn-primary" type="submit">Send enquiry</button>
+            </form>
+          </div>
+
+          <aside class="listing-card">
+            <div style="font-weight:700">Soria Britz</div>
+            <div style="margin-top:6px">📞 <a href="tel:+27824604915">082 460 4915</a></div>
+            <div style="margin-top:6px">✉️ <a href="mailto:Soria@shabanclark.co.za">Soria@shabanclark.co.za</a></div>
+
+            <hr style="margin:12px 0; border:none; height:1px; background:linear-gradient(90deg, transparent, rgba(11,18,32,0.04), transparent)"/>
+            <div class="small">Address: Midstream, Centurion</div>
+            <div style="margin-top:8px" class="small">Dropbox images folder: Add direct image links to the gallery script to display real photos.</div>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+        <div style="font-weight:700">Midstream Ascend</div>
+        <div class="small">© <span id="year"></span> Shaban Clark. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple slideshow
+    (function(){
+      const slides = document.querySelectorAll('.slide');
+      let cur = 0;
+      setInterval(()=>{
+        slides[cur].classList.remove('active');
+        cur = (cur+1)%slides.length;
+        slides[cur].classList.add('active');
+      }, 4500);
+    })();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries =>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Gallery image injection helper
+    // To use your Dropbox images: generate direct image links and add them to the `images` array below.
+    // Example Dropbox direct link pattern for a file: https://dl.dropboxusercontent.com/s/<id>/filename.jpg
+    const images = [
+      // Replace these placeholder URLs with your Dropbox direct image URLs
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+1',
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+2',
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+3',
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+4',
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+5',
+      'https://via.placeholder.com/1600x1200?text=Replace+with+Dropbox+Image+6'
+    ];
+
+    (function populateGallery(){
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      images.forEach(src=>{
+        const img = document.createElement('img');
+        img.src = src;
+        img.loading = 'lazy';
+        grid.appendChild(img);
+      });
+    })();
+
+    // Enquiry handler: sends mailto by opening user's email client with prefilled content
+    function sendEnquiry(){
+      const name = document.getElementById('name').value || 'Interested buyer';
+      const email = document.getElementById('email').value || '';
+      const msg = document.getElementById('message').value || '';
+      const subject = encodeURIComponent('Enquiry: Midstream Ascend (Ref: MA‑AI82)');
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+      // open mailto to Soria
+      window.location.href = `mailto:Soria@shabanclark.co.za?subject=${subject}&body=${body}`;
+    }
+
+    // Smooth scrolling for header links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth'});
+      });
+    });
+  </script>
+</body>
+</html>
